@@ -1,0 +1,15 @@
+<%= form_with model: model, url: request_path do |form| %>
+  <div class="field">
+    <%= form.label :name, '名前' %>
+    <%= form.text_field :name, { class: 'input' } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, 'Email' %>
+    <%= form.email_field :email, { class: 'input' } %>
+  </div>
+
+  <div class="field is-grouped">
+    <%= form.submit '登録する', { class: 'button is-link' } %>
+  </div>
+<% end %>

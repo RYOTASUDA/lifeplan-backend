@@ -1,0 +1,15 @@
+<% if flash.present? %>
+  <div class="notification is-info is-light">
+    <ul>
+      <% flash.each do |message_type, message| %>
+        <% if message_type == "error" && message.instance_of?(Array) %>
+          <% message.each do |error_message| %>
+            <li><%= error_message %></li>
+          <% end %>
+        <% else %>
+          <li><%= message %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

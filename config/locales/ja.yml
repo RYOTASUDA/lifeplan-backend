@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    request:
+      created:
+        success: "登録に成功しました"
+        failure: "登録に失敗しました"
+      updated:
+        success: "更新に成功しました"
+        failure: "更新に失敗しました"

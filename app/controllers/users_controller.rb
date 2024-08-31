@@ -9,26 +9,26 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to users_path, notice: '登録に成功しました'
+      redirect_to users_path, notice: I18n.t('activerecord.request.created.success')
     else
-      flash.now[:alert] = '登録に失敗しました'
+      flash.now[:alert] = I18n.t('activerecord.request.created.failure')
       render :new
     end
-  end
-
-  def edit
-    @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to users_path, notice: '更新に成功しました'
+      redirect_to users_path, notice: I18n.t('activerecord.request.updated.success')
     else
-      flash.now[:alert] = '更新に失敗しました'
+      flash.now[:alert] = I18n.t('activerecord.request.updated.failure')
       render :edit
     end
   end

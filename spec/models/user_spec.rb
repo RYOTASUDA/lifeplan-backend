@@ -27,7 +27,7 @@ RSpec.describe User do
     end
 
     context 'email is not valid format' do
-      let(:user) { build(:user, email: 'test') }
+      let(:user) { build(:user, email: 'test@example.com') }
 
       it { is_expected.to be false }
     end
@@ -40,7 +40,7 @@ RSpec.describe User do
       it { is_expected.to be false }
     end
 
-    context 'email is not case insensitive unique' do
+    context 'email is not case sensitive unique' do
       before { create(:user, email: 'test@gmail.com') }
 
       let(:user) { build(:user, email: 'TeSt@gmail.com') }

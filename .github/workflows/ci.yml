@@ -2,7 +2,7 @@ name: Rails CI
 on: pull_request
 
 jobs:
-  Rubocop:
+  Lint:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -13,7 +13,7 @@ jobs:
       - name: Build Docker image
         run: docker compose build web
 
-      - name: Run Rubocop
+      - name: Run Lint
         run: docker compose run web bundle exec rubocop
 
   Rspec:
@@ -30,11 +30,8 @@ jobs:
       - name: database compose up
         run: docker compose up -d
 
-      - name: Sleep for waiting launch db
-        run: sleep 10s
-
       - name: Setup Database
-        run: docker compose run web rails db:create db:schema:load RAILS_ENV=test
+        run: docker compose exec web rails db:create db:schema:load RAILS_ENV=test
 
       - name: Run RSpec
-        run: docker compose run web bundle exec rspec
+        run: docker compose exec web bundle exec rspec

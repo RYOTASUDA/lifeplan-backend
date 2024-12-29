@@ -25,7 +25,7 @@ module Api
     def generate_token_with_google_user_id(google_user_id, provider)
       exp = Time.now.to_i + (24 * 3600)
       payload = { google_user_id:, provider:, exp: }
-      hmac_secret = ENV['JWT_SECRET_KEY']
+      hmac_secret = ENV.fetch('JWT_SECRET_KEY', nil)
       JWT.encode(payload, hmac_secret, 'HS256')
     end
   end

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-module API
+module Api
   class SessionsController < ApplicationController
     skip_before_action :authenticate_request, only: [:create]
 
     def create # rubocop:disable Metrics/AbcSize
-      frontend_url = Rails.configuration.allow_origins
+      frontend_url = Rails.configuration.allow_origins.first
       user_info = request.env['omniauth.auth']
       google_user_id = user_info['uid']
       provider = user_info['provider']
@@ -25,7 +25,7 @@ module API
     def generate_token_with_google_user_id(google_user_id, provider)
       exp = Time.now.to_i + (24 * 3600)
       payload = { google_user_id:, provider:, exp: }
-      hmac_secret = Rails.application.credentials.jet_secret_key
+      hmac_secret = ENV['JWT_SECRET_KEY']
       JWT.encode(payload, hmac_secret, 'HS256')
     end
   end

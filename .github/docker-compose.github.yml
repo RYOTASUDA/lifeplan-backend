@@ -1,0 +1,11 @@
+services:
+  web:
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "db", "-u", "root", "-ppassword"]
+      interval: 3s
+      timeout: 5s
+      retries: 10

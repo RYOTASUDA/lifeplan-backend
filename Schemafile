@@ -3,3 +3,11 @@ create_table :users, charset: 'utf8mb4', collation: 'utf8mb4_bin', force: :casca
   t.string     :email, null: false, index: { unique: true }
   t.timestamps precision: nil
 end
+
+create_table :user_authentications, charset: 'utf8mb4', collation: 'utf8mb4_bin', force: :cascade do |t|
+  t.references :user, null: false, foreign_key: true
+  t.string :provider
+  t.string :uid
+
+  t.timestamps precision: nil
+end

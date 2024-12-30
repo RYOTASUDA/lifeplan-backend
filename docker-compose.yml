@@ -10,6 +10,8 @@ services:
       - 3321:3306
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - lifeplan-network
 
   web:
     build: .
@@ -20,6 +22,12 @@ services:
       - 3000:3000
     depends_on:
       - db
+    networks:
+      - lifeplan-network
 
 volumes:
   mysql_data:
+
+networks:
+  lifeplan-network:
+    external: true

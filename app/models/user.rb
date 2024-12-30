@@ -9,4 +9,10 @@ class User < ApplicationRecord
             presence: true,
             uniqueness: { case_sensitive: false },
             format: { with: GMAIL_REGEXP }
+
+  class << self
+    def find_or_initialize_by_google_oauth(info)
+      find_by(email: info['email']) || new(name: info['name'], email: info['email'])
+    end
+  end
 end

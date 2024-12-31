@@ -5,6 +5,11 @@ module Api
     before_action :set_current_user
     before_action :authenticate_user
 
+    rescue_from(ActiveRecord::RecordInvalid) do |error|
+      render_bad_request_with_messages([error.message])
+    end
+    rescue_from(ActiveRecord::RecordNotFound, with: :render_not_found_error)
+
     def current_user
       return unless session[:user_id]
 
@@ -19,8 +24,20 @@ module Api
       render_unauthorized if @current_user.blank?
     end
 
+    def render_success
+      render json: { message: 'Success' }
+    end
+
     def render_unauthorized
       render json: { message: "You can't use service." }, status: :unauthorized
+    end
+
+    def render_bad_request_with_messages(messages)
+      render json: { messages: }, status: :bad_request
+    end
+
+    def render_not_found_error
+      render json: { message: 'Not found' }, status: :not_found
     end
   end
 end

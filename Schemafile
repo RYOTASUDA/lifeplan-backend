@@ -5,6 +5,15 @@ create_table :categories, charset: 'utf8mb4', collation: 'utf8mb4_bin', force: :
   t.timestamps precision: nil
 end
 
+create_table :plans, charset: 'utf8mb4', collation: 'utf8mb4_bin', force: :cascade do |t|
+  t.references :user, foreign_key: true
+  t.bigint     :category_id, null: false
+  t.string     :title, null: false
+  t.datetime   :deadline, precision: nil, null: false
+  t.string     :detail, null: false
+  t.integer    :period_type, null: false
+end
+
 create_table :users, charset: 'utf8mb4', collation: 'utf8mb4_bin', force: :cascade do |t|
   t.string     :name, null: false
   t.string     :email, null: false, index: { unique: true }

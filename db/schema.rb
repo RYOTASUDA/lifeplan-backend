@@ -21,6 +21,16 @@ ActiveRecord::Schema[7.0].define(version: 0) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
+  create_table "plans", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "category_id", null: false
+    t.string "title", null: false
+    t.datetime "deadline", precision: nil, null: false
+    t.string "detail", null: false
+    t.integer "period_type", null: false
+    t.index ["user_id"], name: "index_plans_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -30,4 +40,5 @@ ActiveRecord::Schema[7.0].define(version: 0) do
   end
 
   add_foreign_key "categories", "users"
+  add_foreign_key "plans", "users"
 end

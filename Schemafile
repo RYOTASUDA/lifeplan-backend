@@ -1,3 +1,10 @@
+create_table :categories, charset: 'utf8mb4', collation: 'utf8mb4_bin', force: :cascade do |t|
+  t.references :user, foreign_key: true
+  t.string     :name, null: false, index: { unique: true }
+  t.string     :color, null: false
+  t.timestamps precision: nil
+end
+
 create_table :users, charset: 'utf8mb4', collation: 'utf8mb4_bin', force: :cascade do |t|
   t.string     :name, null: false
   t.string     :email, null: false, index: { unique: true }

@@ -39,5 +39,9 @@ module Api
     def render_not_found_error
       render json: { message: 'Not found' }, status: :not_found
     end
+
+    def to_underscore_params
+      params.deep_transform_keys { _1.to_s.underscore }
+    end
   end
 end

@@ -13,11 +13,9 @@ module Api
     def google_oauth2_callback
       user = User.find_or_initialize_by_google_oauth(request.env['omniauth.auth']['info'])
 
-      unless user.new_record? && !user.save
-        session[:user_id] = user.id
-        Category.create_default_categories(user)
-      end
+      user.categories.create_default if user.new_record? && user.save
 
+      session[:user_id] = user.id if user.present?
       redirect_to ENV.fetch('FRONT_URL', nil)
     end
   end

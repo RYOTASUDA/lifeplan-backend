@@ -1,8 +1,17 @@
 create_table :categories, charset: 'utf8mb4', collation: 'utf8mb4_bin', force: :cascade do |t|
   t.references :user, foreign_key: true
-  t.string     :name, null: false, index: { unique: true }
+  t.string     :name, null: false
   t.string     :color, null: false
   t.timestamps precision: nil
+end
+
+create_table :plans, charset: 'utf8mb4', collation: 'utf8mb4_bin', force: :cascade do |t|
+  t.references :user, foreign_key: true
+  t.references :category, foreign_key: true
+  t.string     :title, null: false
+  t.datetime   :deadline, precision: nil, null: false
+  t.string     :detail
+  t.integer    :period_type, null: false
 end
 
 create_table :users, charset: 'utf8mb4', collation: 'utf8mb4_bin', force: :cascade do |t|

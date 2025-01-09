@@ -17,8 +17,18 @@ ActiveRecord::Schema[7.0].define(version: 0) do
     t.string "color", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.index ["name"], name: "index_categories_on_name", unique: true
     t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "plans", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "category_id"
+    t.string "title", null: false
+    t.datetime "deadline", precision: nil, null: false
+    t.string "detail"
+    t.integer "period_type", null: false
+    t.index ["category_id"], name: "index_plans_on_category_id"
+    t.index ["user_id"], name: "index_plans_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
@@ -30,4 +40,6 @@ ActiveRecord::Schema[7.0].define(version: 0) do
   end
 
   add_foreign_key "categories", "users"
+  add_foreign_key "plans", "categories"
+  add_foreign_key "plans", "users"
 end

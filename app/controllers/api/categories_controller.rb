@@ -43,7 +43,7 @@ module Api
     private
 
     def category_params
-      params.require(:category).permit(:name, :color)
+      to_underscore_params.require(:category).permit(:name, :color)
     end
   end
 end

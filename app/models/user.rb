@@ -3,6 +3,7 @@
 # 管理画面のユーザー
 class User < ApplicationRecord
   has_many :categories, dependent: :destroy
+  has_many :plans, dependent: :destroy
 
   GMAIL_REGEXP = %r{\A[a-zA-Z0-9.!\#$%&'*+/=?^_`{|}~-]+@gmail\.com\z}
 

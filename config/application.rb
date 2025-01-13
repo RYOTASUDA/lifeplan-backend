@@ -23,11 +23,11 @@ module Myapp
 
     config.api_only = true
     if Rails.env.production?
-      # client = Aws::SecretsManager::Client.new(region: 'ap-northeast-1')
-      # get_secret_value_response =
-      #   client.get_secret_value(secret_id: "bukken-kanrikun-#{Rails.env}")
-      # JSON.parse(get_secret_value_response.secret_string)
-      #     .each { |key, value| ENV[key] = value }
+      client = Aws::SecretsManager::Client.new(region: 'ap-northeast-1')
+      get_secret_value_response =
+        client.get_secret_value(secret_id: "lifeplan-kanrikun-#{Rails.env}")
+      JSON.parse(get_secret_value_response.secret_string)
+          .each { |key, value| ENV[key] = value }
     else
       Rails.application.credentials.config.each do |key, value|
         ENV[key.to_s.upcase] = value.to_s

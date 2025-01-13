@@ -28,5 +28,6 @@ test:
 production:
   <<: *default
   database: lifeplan_production
-  username: lifeplan
-  password: <%= ENV["LIFEPLAN_DATABASE_PASSWORD"] %>
+  username: admin
+  password: <%= ENV.fetch('DB_PASSWORD', 'password') %>
+  host: <%= ENV.fetch('DB_HOST', nil) %>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     delete '/logout', to: 'sessions#destroy'
+    get '/healthcheck', to: 'healthcheck#show'
 
     resource :users, only: %i[show]
     resources :categories, only: %i[index create edit update destroy]

@@ -16,7 +16,7 @@ module Api
       user.categories.create_default if user.new_record? && user.save
 
       session[:user_id] = user.id if user.present?
-      redirect_to ENV.fetch('FRONT_URL', nil)
+      redirect_to Settings.frontend_url
     end
   end
 end

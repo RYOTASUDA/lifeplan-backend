@@ -1,0 +1,127 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:904233111032:task-definition/lifeplan-kanrikun-backend:20",
+    "containerDefinitions": [
+        {
+            "name": "backend",
+            "image": "904233111032.dkr.ecr.ap-northeast-1.amazonaws.com/lifeplan-kanrikun-backend:v0.2",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 3000,
+                    "protocol": "tcp",
+                    "name": "web-3000-http",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "command": [
+                "bundle",
+                "exec",
+                "rails",
+                "server",
+                "-b",
+                "0.0.0.0"
+            ],
+            "environment": [
+                {
+                    "name": "RAILS_LOG_TO_STDOUT",
+                    "value": "1"
+                },
+                {
+                    "name": "RAILS_ENV",
+                    "value": "production"
+                },
+                {
+                    "name": "RAILS_SERVE_STATIC_FILES",
+                    "value": "1"
+                },
+                {
+                    "name": "RAILS_MASTER_KEY",
+                    "value": "270939f19b1121c410de8bf2cb035f1c"
+                },
+                {
+                    "name": "DB_HOST",
+                    "value": "lifeplan-kanrikun-db-cluster.cluster-c90e6c8w2gy1.ap-northeast-1.rds.amazonaws.com"
+                },
+                {
+                    "name": "DB_PASSWORD",
+                    "value": "LeYwt1CKH3wGt0q0CpoZ"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/lifeplan-kanrikun-backend",
+                    "mode": "non-blocking",
+                    "awslogs-create-group": "true",
+                    "max-buffer-size": "25m",
+                    "awslogs-region": "ap-northeast-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "lifeplan-kanrikun-backend",
+    "taskRoleArn": "arn:aws:iam::904233111032:role/ecs-task-role",
+    "executionRoleArn": "arn:aws:iam::904233111032:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 20,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "registeredAt": "2025-02-11T09:46:56.220000+09:00",
+    "registeredBy": "arn:aws:iam::904233111032:root",
+    "enableFaultInjection": false
+}

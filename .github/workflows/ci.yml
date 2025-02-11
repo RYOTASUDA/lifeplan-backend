@@ -12,7 +12,7 @@ env:
   ECR_REPOSITORY: lifeplan-kanrikun-backend
   ECS_SERVICE: lifeplan-kanrikun-backend
   ECS_CLUSTER: lifeplan-kanrikun-backend
-  ECS_TASK_DEFINITION: lifeplan-kanrikun-backend:20
+  ECS_TASK_DEFINITION: lifeplan-kanrikun-backend
   CONTAINER_NAME: backend
 
 jobs:

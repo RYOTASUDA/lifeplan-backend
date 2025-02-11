@@ -1,5 +1,11 @@
 name: Rails CI
-on: pull_request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
 
 env:
   AWS_REGION: ap-northeast-1

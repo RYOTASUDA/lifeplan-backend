@@ -11,6 +11,7 @@ module Api
     rescue_from(ActiveRecord::RecordNotFound, with: :render_not_found_error)
 
     def current_user
+      Rails.logger.info("session[:user_id]: #{session[:user_id]}")
       return unless session[:user_id]
 
       User.find(session[:user_id])

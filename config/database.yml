@@ -15,19 +15,20 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: password
-  host: db
 
 development:
   <<: *default
   database: lifeplan_development
+  host: db
 
 test:
   <<: *default
   database: lifeplan_test
+  host: db
 
 production:
   <<: *default
   database: lifeplan_production
   username: admin
-  password: <%= ENV.fetch('DB_PASSWORD', 'password') %>
-  host: <%= ENV.fetch('DB_HOST', nil) %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  socket: /cloudsql/lifeplan-433606:us-central1:lifeplan-kanrikun

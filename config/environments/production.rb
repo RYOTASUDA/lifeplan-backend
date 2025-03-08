@@ -2,7 +2,7 @@
 
 require 'active_support/core_ext/integer/time'
 
-Rails.application.configure do
+Rails.application.configure do # rubocop:disable Metrics/BlockLength
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -85,5 +85,13 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.allow_origins = ['https://lifeplan-kanrikun.com']
+  config.allow_origins = [
+    'https://lifeplan-kanrikun.com',
+    'https://lifeplan-kanrikun-frontend-320744391352.us-central1.run.app'
+  ]
+
+  config.hosts = [
+    'lifeplan-kanrikun-backend-320744391352.us-central1.run.app',
+    'api.lifeplan-kanrikun.com'
+  ]
 end

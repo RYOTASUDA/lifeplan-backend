@@ -21,3 +21,5 @@ COPY Gemfile Gemfile.lock /myapp/
 RUN gem install bundler:2.3.19 && bundle install -j4
 
 COPY . /myapp
+
+CMD ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]

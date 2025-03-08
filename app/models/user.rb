@@ -14,8 +14,8 @@ class User < ApplicationRecord
             format: { with: GMAIL_REGEXP }
 
   class << self
-    def find_or_initialize_by_google_oauth(info)
-      find_by(email: info['email']) || new(name: info['name'], email: info['email'])
+    def find_or_initialize_by_email(email)
+      find_or_initialize_by(email:)
     end
   end
 end

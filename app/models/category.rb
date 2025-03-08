@@ -13,19 +13,10 @@ class Category < ApplicationRecord
     { name: '精神', color: '#15aabf' },
     { name: 'その他', color: '#868e96' }
   ].freeze
-  private_constant :DEFAULT_CATEGORIES
 
   validates :name, presence: true
   validates :color, presence: true,
                     format: { with: /\A#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\z/ }
 
   scope :search_by_user, ->(user) { where(user:) }
-
-  class << self
-    def create_default
-      DEFAULT_CATEGORIES.each do |default_category|
-        create(default_category)
-      end
-    end
-  end
 end

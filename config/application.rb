@@ -25,13 +25,6 @@ module Myapp
     Rails.application.credentials.config.each do |key, value|
       ENV[key.to_s.upcase] = value.to_s
     end
-    if Rails.env.production?
-      client = Aws::SecretsManager::Client.new(region: 'ap-northeast-1')
-      get_secret_value_response =
-        client.get_secret_value(secret_id: 'lifeplan-kanrikun')
-      JSON.parse(get_secret_value_response.secret_string)
-          .each { |key, value| ENV[key] = value }
-    end
   end
 end
 

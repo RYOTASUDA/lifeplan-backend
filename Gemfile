@@ -5,7 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.6'
 
-gem 'aws-sdk-secretsmanager'
 gem 'bootsnap', require: false
 gem 'importmap-rails'
 gem 'jbuilder'

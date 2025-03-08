@@ -10,7 +10,7 @@ module Api
       render json: { message: 'Logout successfully.' }
     end
 
-    def google_oauth2_callback
+    def google_oauth2_callback # rubocop:disable Metrics/AbcSize
       user = User.find_or_initialize_by_email(request.env['omniauth.auth']['info']['email'])
 
       user.assign_attributes(name: request.env['omniauth.auth']['info']['name'])

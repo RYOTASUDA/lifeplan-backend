@@ -86,3 +86,15 @@ jobs:
           IMAGE_TAG: ${{ github.run_id }}
         run: |
           docker push us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/lifeplan-kanrikun-backend/${{ env.IMAGE_TAG }}
+
+      - name: Deploy
+        env:
+          IMAGE_TAG: ${{ github.run_id }}
+        run: |
+          gcloud run deploy lifeplan-kanrikun-backend \
+            --project=${{ secrets.PROJECT_ID }} \
+            --image=us-central1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/lifeplan-kanrikun-backend/${{ env.IMAGE_TAG }} \
+            --region=us-central1 \
+            --service-account=${{ secrets.SERVICE_ACCOUNT }} \
+            --platform=managed \
+            --allow-unauthenticated

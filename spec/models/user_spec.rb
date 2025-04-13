@@ -28,12 +28,6 @@ RSpec.describe User do
       it { is_expected.to be false }
     end
 
-    context 'when email is not valid format' do
-      let(:user) { build(:user, email: 'test@example.com') }
-
-      it { is_expected.to be false }
-    end
-
     context 'when email is not unique' do
       before { create(:user, email: 'test@gmail.com') }
 

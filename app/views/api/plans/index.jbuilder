@@ -7,7 +7,7 @@ json.allPlans do
       json.array! plans do |plan|
         json.id plan.id
         json.title plan.title
-        json.deadline plan.format_deadline_by_period_type
+        json.deadline plan.deadline.strftime('%Y/%m/%d %H:%M:%S')
         json.detail plan.detail
         json.periodType plan.period_type
         json.category do

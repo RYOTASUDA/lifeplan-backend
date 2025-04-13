@@ -23,17 +23,6 @@ class Plan < ApplicationRecord
     )
   end
 
-  def format_deadline_by_period_type
-    case period_type
-    when 'life', 'year'
-      deadline.strftime('%Y/%m')
-    when 'month', 'week'
-      deadline.strftime('%Y年%m月%d日')
-    when 'day'
-      deadline.strftime('%Y年%m月%d日 %H:%M')
-    end
-  end
-
   def category
     user.categories.find(category_id)
   end

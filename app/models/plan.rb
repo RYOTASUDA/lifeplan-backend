@@ -10,6 +10,7 @@ class Plan < ApplicationRecord
   validates :deadline, presence: true
   validates :period_type, presence: true
 
+  scope :search_by_category, ->(category_id) { where(category_id:) }
   scope :sort_by_deadline, -> { order(deadline: :asc) }
   scope :group_by_year, -> { group_by { |plan| (plan.deadline.year / 10) * 10 } }
 

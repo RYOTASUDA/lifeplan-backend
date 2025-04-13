@@ -3,10 +3,12 @@
 module Api
   class PlansController < ApplicationController
     def index
-      @all_plans = if params[:category_id].present?
-                     current_user.plans.search_by_category(params[:category_id]).sort_by_deadline.group_by_year
+      @all_plans = if to_underscore_params[:category_id].present?
+                     current_user.plans
+                                 .search_by_category(to_underscore_params[:category_id].to_i)
+                                 .sort_by_deadline.group_by_year
                    else
-                    current_user.plans.sort_by_deadline.group_by_year
+                     current_user.plans.sort_by_deadline.group_by_year
                    end
     end
 

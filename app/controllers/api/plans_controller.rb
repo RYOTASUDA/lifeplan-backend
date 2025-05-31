@@ -2,8 +2,9 @@
 
 module Api
   class PlansController < ApplicationController
-    def index
-      @all_plans = if to_underscore_params[:category_id].present?
+    def index # rubocop:disable Metrics/AbcSize
+      @all_plans = if to_underscore_params[:category_id].present? &&
+                      to_underscore_params[:category_id].to_i != 0
                      current_user.plans
                                  .search_by_category(to_underscore_params[:category_id].to_i)
                                  .sort_by_deadline.group_by_year
